@@ -14,7 +14,6 @@
  *  limitations under the License.
  */
 
-import "DotEnv"
 import e, {urlencoded} from "express";
 import {initializeDb} from "./mongoTemplate/MongoRepository.js";
 import {gateway} from "./routes/gateway.js";
