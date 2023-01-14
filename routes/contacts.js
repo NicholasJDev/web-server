@@ -15,9 +15,10 @@
  */
 
 import {Router} from "express";
+import {getAll, getContactById} from "../controller/contacts.js";
 
-export const main = new Router()
 
-main.get('/', (req, res) => {
-    res.send("This is a main page of the application.")
-})
+export const contacts = new Router()
+
+contacts.get('/contacts', getAll);
+contacts.get('/contacts/:id', getContactById);

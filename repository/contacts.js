@@ -14,10 +14,18 @@
  *  limitations under the License.
  */
 
-import {Router} from "express";
+import {getClient} from "../mongoTemplate/MongoRepository.js";
 
-export const main = new Router()
+const getCollection = () => {
+    return getClient().db("Node_Application").collection('ContactService')
+}
 
-main.get('/', (req, res) => {
-    res.send("This is a main page of the application.")
-})
+export const getAll = async() => {
+    let collection = getCollection();
+    return await collection.find().toArray().then(list => list)
+}
+
+export const getContactById = async (userId) => {
+    let collection = getCollection();
+    return await collection.find({_id: userId}).toArray().then(list => list)
+}
