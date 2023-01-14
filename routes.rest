@@ -1,0 +1,27 @@
+// On a localhost
+
+###
+GET http://localhost:8080/contacts
+
+###
+GET http://localhost:8080/contacts/63c30661ec69c006fccc6aa3
+
+###
+GET http://localhost:8080/contacts/63c30782ec69c006fccc6aa4
+
+###
+GET http://localhost:8080/contacts/63c30782ec69c006fccc6aa5
+
+// On Render
+
+###
+GET https://nodejs-web-server.onrender.com/contacts
+
+###
+GET https://nodejs-web-server.onrender.com/contacts/63c30782ec69c006fccc6aa3
+
+###
+GET https://nodejs-web-server.onrender.com/contacts/63c30782ec69c006fccc6aa4
+
+###
+GET https://nodejs-web-server.onrender.com/contacts/63c30782ec69c006fccc6aa5

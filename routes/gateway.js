@@ -1,4 +1,4 @@
-/*********************************************************************************
+/*
  * Copyright (c) 2023 the original author or authors.
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,17 +12,17 @@
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
- **********************************************************************************/
+ */
 
-import "express";
-import { routes } from "./routes/index.js";
-import e from "express";
+import {Router} from "express";
+import {contacts} from "./contacts.js";
+import {main} from "./index.js";
 
-const application = e()
-const port = process.env.PORT || 8080
+export const gateway = new Router()
 
-application.get('/', routes)
-
-application.listen(port, ()=> {
-    console.log(`Application listens on port ${port}`)
-})
+ gateway.use(main)
+ gateway.use(contacts)
+ gateway.get('/health', (req, res) => {
+    res.send("Application is working fine")
+ }
+);

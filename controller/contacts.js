@@ -13,11 +13,18 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
+import {getAllRecords, getContactsById} from "../services/contacts.js";
 
-import {Router} from "express";
+export const getAll = async (req, res) =>{
+    getAllRecords().then(list => {
+        res.setHeader('Content-Type', 'application/json')
+        res.status(200).json(list)
+    });
+};
 
-export const main = new Router()
-
-main.get('/', (req, res) => {
-    res.send("This is a main page of the application.")
-})
+export const getContactById =  async (req, res) => {
+    getContactsById(req).then(record => {
+        res.setHeader('Content-Type', 'application/json')
+        res.status(200).json(record)
+    });
+};

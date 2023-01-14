@@ -14,10 +14,14 @@
  *  limitations under the License.
  */
 
-import {Router} from "express";
+import {getAll, getContactById} from "../repository/contacts.js";
+import {ObjectId} from "mongodb";
 
-export const main = new Router()
+export const getAllRecords = async() => {
+    return await getAll()
+}
 
-main.get('/', (req, res) => {
-    res.send("This is a main page of the application.")
-})
+export const getContactsById = async(req) => {
+    let objectId = new ObjectId(req.params.id);
+    return await getContactById(objectId).then(list => list[0])
+}
