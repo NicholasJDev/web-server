@@ -25,10 +25,6 @@ const port = process.env.PORT || 8080
 application
     .use(bodyParser.json())
     .use(urlencoded({extended: true}))
-    .use((req, res, next) => {
-     res.setHeader('Access-Control-Allow-Origin', '*')
-       next()
-     })
     .use(gateway)
 
 initializeDb((err, mongodb) => {

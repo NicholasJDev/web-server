@@ -23,5 +23,5 @@ export const getAllRecords = async() => {
 
 export const getContactsById = async(req) => {
     let objectId = new ObjectId(req.params.id);
-    return await getContactById(objectId).then(list => list[0])
+    return await getContactById(objectId)
 }

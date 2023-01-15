@@ -15,14 +15,14 @@
  */
 import {getAllRecords, getContactsById} from "../services/contacts.js";
 
-export const getAll = async (req, res) =>{
+export const getAll = async (req, res) => {
     getAllRecords().then(list => {
         res.setHeader('Content-Type', 'application/json')
         res.status(200).json(list)
     });
 };
 
-export const getContactById =  async (req, res) => {
+export const getContactById = async (req, res) => {
     getContactsById(req).then(record => {
         res.setHeader('Content-Type', 'application/json')
         res.status(200).json(record)
