@@ -27,5 +27,5 @@ export const getAll = async() => {
 
 export const getContactById = async (userId) => {
     let collection = getCollection();
-    return await collection.find({_id: userId}).toArray().then(list => list)
+    return await collection.findOne({_id: userId})
 }
