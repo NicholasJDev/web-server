@@ -20,7 +20,7 @@ const getCollection = () => {
     return getClient().db("Node_Application").collection('ContactService')
 }
 
-export const getAll = async() => {
+export const getAll = async () => {
     let collection = getCollection();
     return await collection.find().toArray().then(list => list)
 }
@@ -29,3 +29,28 @@ export const getContactById = async (userId) => {
     let collection = getCollection();
     return await collection.findOne({_id: userId})
 }
+
+export const postContact = async (user) => {
+    let collection = getCollection()
+    return await collection.insertOne(user)
+}
+export const postContacts = async (listUsers) => {
+    let collection = getCollection()
+    return await collection.insertMany(listUsers)
+}
+
+export const deleteContact = async (userId) => {
+    let collection = getCollection()
+    return await collection.deleteOne({_id: userId})
+}
+
+export const deleteContacts = async (listUserId) => {
+    let collection = getCollection()
+    return await collection.deleteMany({_id: {$in: listUserId}})
+}
+
+export const putContact = async (user) => {
+    let collection = getCollection()
+    return await collection.replaceOne({_id: user.id}, user)
+}
+

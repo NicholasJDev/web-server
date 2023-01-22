@@ -15,10 +15,13 @@
  */
 
 import {Router} from "express";
-import {getAll, getContactById} from "../controller/contacts.js";
+import {createUser, deleteUser, getAll, getContactById, updateUser} from "../controller/contacts.js";
 
 
 export const contacts = new Router()
 
 contacts.get('/contacts', getAll);
 contacts.get('/contacts/:id', getContactById);
+contacts.put('/contacts/:id', updateUser);
+contacts.post('/contacts', createUser);
+contacts.delete('/contacts/:id', deleteUser);

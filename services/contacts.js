@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-import {getAll, getContactById} from "../repository/contacts.js";
+import {deleteContact, getAll, getContactById, postContact, putContact} from "../repository/contacts.js";
 import {ObjectId} from "mongodb";
 
 export const getAllRecords = async() => {
@@ -24,4 +24,47 @@ export const getAllRecords = async() => {
 export const getContactsById = async(req) => {
     let objectId = new ObjectId(req.params.id);
     return await getContactById(objectId)
+}
+
+export const createContact = async (req) => {
+    let reqBody = req.body
+    validateUserContact(reqBody)
+    return await postContact({
+        firstName: reqBody.firstName,
+        lastName: reqBody.lastName,
+        email: reqBody.email,
+        favoriteColor: reqBody.favoriteColor,
+        birthday: reqBody.birthday
+    })
+}
+
+function validateUserContact(user) {
+    if (validate(user.firstName) || validate(user.lastName) || validate(user.email) || validate(user.favoriteColor)
+        || validate(user.birthday)) {
+        throw Error("Please fiill all mandatory fields.")
+    }
+}
+
+function validate(value) {
+    return value === '' || value === 'undefined';
+}
+
+export const removeContact = async (req) => {
+    let userId = new ObjectId(req.params.id)
+    return await deleteContact(userId)
+}
+
+export const updateContact = async (req) => {
+    let reqBody = req.body
+    validateUserContact(reqBody)
+    let userId = new ObjectId(req.params.id)
+
+    return await putContact({
+        id: userId,
+        firstName: reqBody.firstName,
+        lastName: reqBody.lastName,
+        email: reqBody.email,
+        favoriteColor: reqBody.favoriteColor,
+        birthday: reqBody.birthday
+    })
 }

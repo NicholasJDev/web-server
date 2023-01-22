@@ -12,7 +12,36 @@ GET http://localhost:8080/contacts/63c30782ec69c006fccc6aa4
 ###
 GET http://localhost:8080/contacts/63c30782ec69c006fccc6aa5
 
-// On Render
+###
+POST  http://localhost:8080/contacts
+content-type: application/json
+
+{
+  "firstName": "Teresa",
+  "lastName": "Hunt",
+  "email": "teresa@local.intra",
+  "favoriteColor": "light-blue",
+  "birthday": "05/19/1976"
+}
+
+
+###
+PUT http://localhost:8080/contacts/63cc8df039ed2c39e64bef9c
+content-type: application/json
+
+{
+  "firstName": "Teresa",
+  "lastName": "Burges",
+  "email": "teresa@local.intra",
+  "favoriteColor": "light-blue",
+  "birthday": "05/19/1976"
+}
+
+
+###
+DELETE http://localhost:8080/contacts/63cc8df039ed2c39e64bef9c
+
+### On Render
 
 ###
 GET https://nodejs-web-server.onrender.com/contacts
@@ -25,3 +54,30 @@ GET https://nodejs-web-server.onrender.com/contacts/63c30782ec69c006fccc6aa4
 
 ###
 GET https://nodejs-web-server.onrender.com/contacts/63c30782ec69c006fccc6aa5
+
+###
+POST  https://nodejs-web-server.onrender.com//contacts
+content-type: application/json
+
+{
+  "firstName": "Teresa",
+  "lastName": "Hunt",
+  "email": "teresa@local.intra",
+  "favoriteColor": "light-blue",
+  "birthday": "05/19/1976"
+}
+
+###
+PUT https://nodejs-web-server.onrender.com//contacts/63cc8df039ed2c39e64bef9c
+content-type: application/json
+
+{
+  "firstName": "Teresa",
+  "lastName": "Burges",
+  "email": "teresa@local.intra",
+  "favoriteColor": "light-blue",
+  "birthday": "05/19/1976"
+}
+
+###
+DELETE https://nodejs-web-server.onrender.com//contacts/63cc8df039ed2c39e64bef9c
