@@ -51,6 +51,6 @@ export const deleteContacts = async (listUserId) => {
 
 export const putContact = async (user) => {
     let collection = getCollection()
-    return await collection.replaceOne({_id: user.id}, user)
+    return await collection.replaceOne({_id: user._id}, user)
 }
 

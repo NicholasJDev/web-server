@@ -48,6 +48,6 @@ export const updateUser = async (req, res) => {
     updateContact(req).then( response => {
         res.setHeader('Content-Type', 'application/json')
         response.modifiedCount > 0 ? res.status(204).send()
-            : res.status(500).json(response.errmsg || 'Unexpected behavior occurred during deletion operation.')
+            : res.status(500).json(response.errmsg || 'Unexpected behavior occurred during update operation.')
     });
 };
