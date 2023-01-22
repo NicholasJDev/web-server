@@ -60,7 +60,7 @@ export const updateContact = async (req) => {
     let userId = new ObjectId(req.params.id)
 
     return await putContact({
-        id: userId,
+        _id: userId,
         firstName: reqBody.firstName,
         lastName: reqBody.lastName,
         email: reqBody.email,
