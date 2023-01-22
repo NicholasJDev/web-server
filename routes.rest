@@ -56,7 +56,7 @@ GET https://nodejs-web-server.onrender.com/contacts/63c30782ec69c006fccc6aa4
 GET https://nodejs-web-server.onrender.com/contacts/63c30782ec69c006fccc6aa5
 
 ###
-POST  https://nodejs-web-server.onrender.com//contacts
+POST  https://nodejs-web-server.onrender.com/contacts
 content-type: application/json
 
 {
@@ -68,7 +68,7 @@ content-type: application/json
 }
 
 ###
-PUT https://nodejs-web-server.onrender.com//contacts/63cc8df039ed2c39e64bef9c
+PUT https://nodejs-web-server.onrender.com/contacts/63cc8df039ed2c39e64bef9c
 content-type: application/json
 
 {
@@ -80,4 +80,4 @@ content-type: application/json
 }
 
 ###
-DELETE https://nodejs-web-server.onrender.com//contacts/63cc8df039ed2c39e64bef9c
+DELETE https://nodejs-web-server.onrender.com/contacts/63cc8df039ed2c39e64bef9c
