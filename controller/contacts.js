@@ -13,7 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-import {getAllRecords, getContactsById} from "../services/contacts.js";
+import {createContact, getAllRecords, getContactsById, removeContact, updateContact} from "../services/contacts.js";
 
 export const getAll = async (req, res) => {
     getAllRecords().then(list => {
@@ -25,6 +25,29 @@ export const getAll = async (req, res) => {
 export const getContactById = async (req, res) => {
     getContactsById(req).then(record => {
         res.setHeader('Content-Type', 'application/json')
-        res.status(200).json(record)
+        res.status(200).json(record);
+    });
+};
+export const createUser = async (req, res) => {
+    return await createContact(req).then(response => {
+        res.setHeader('Content-Type', 'application/json')
+        response.acknowledged ? res.status(201).json(response)
+            : res.status(500).json(response.errmsg || 'Unexpected behavior occurred during creation.')
+    });
+};
+
+export const deleteUser = async (req, res) => {
+    removeContact(req).then(response => {
+        res.setHeader('Content-Type', 'application/json')
+        response.deletedCount > 0 ? res.status(204).send()
+            : res.status(500).json(response.errmsg || 'Unexpected behavior occurred during deletion operation.')
+    });
+};
+
+export const updateUser = async (req, res) => {
+    updateContact(req).then( response => {
+        res.setHeader('Content-Type', 'application/json')
+        response.modifiedCount > 0 ? res.status(204).send()
+            : res.status(500).json(response.errmsg || 'Unexpected behavior occurred during deletion operation.')
     });
 };
