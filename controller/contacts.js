@@ -31,7 +31,7 @@ export const getContactById = async (req, res) => {
 export const createUser = async (req, res) => {
     return await createContact(req).then(response => {
         res.setHeader('Content-Type', 'application/json')
-        response.acknowledged ? res.status(201).json(response)
+        response.acknowledged ? res.status(201).json({id:response.insertedId})
             : res.status(500).json(response.errmsg || 'Unexpected behavior occurred during creation.')
     });
 };
