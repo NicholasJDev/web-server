@@ -18,7 +18,6 @@ import e, {urlencoded} from "express";
 import {initializeDb} from "./mongoTemplate/MongoRepository.js";
 import {gateway} from "./routes/gateway.js";
 import bodyParser from "body-parser";
-
 const application = e()
 const port = process.env.PORT || 8080
 

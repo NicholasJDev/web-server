@@ -29,9 +29,21 @@ export const getContactById = async (req, res) => {
     });
 };
 export const createUser = async (req, res) => {
+    /* #swagger.parameters['body'] = {
+                                   in: 'body',
+                                   required: true,
+                                  schema: {
+                                       firstName: "Teresa",
+                                      lastName: "Hunt",
+                                      email: "teresa@local.intra",
+                                      favoriteColor: "light-blue",
+                                      birthday: "05/19/1976"
+                                       }
+                    }
+            */
     return await createContact(req).then(response => {
         res.setHeader('Content-Type', 'application/json')
-        response.acknowledged ? res.status(201).json({id:response.insertedId})
+        response.acknowledged ? res.status(201).json({id: response.insertedId})
             : res.status(500).json(response.errmsg || 'Unexpected behavior occurred during creation.')
     });
 };
@@ -45,7 +57,19 @@ export const deleteUser = async (req, res) => {
 };
 
 export const updateUser = async (req, res) => {
-    updateContact(req).then( response => {
+    /* #swagger.parameters['body'] = {
+                                   in: 'body',
+                                   required: true,
+                                  schema: {
+                                       firstName: "Teresa",
+                                      lastName: "Hunt",
+                                      email: "teresa@local.intra",
+                                      favoriteColor: "light-blue",
+                                      birthday: "05/19/1976"
+                                       }
+                    }
+            */
+    updateContact(req).then(response => {
         res.setHeader('Content-Type', 'application/json')
         response.modifiedCount > 0 ? res.status(204).send()
             : res.status(500).json(response.errmsg || 'Unexpected behavior occurred during update operation.')

@@ -13,28 +13,26 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
-import {Router} from "express";
-import {contacts} from "./contacts.js";
-import {main} from "./index.js";
-import {readFile} from "fs/promises"
-import swaggerUi from "swagger-ui-express";
+import swaggerAutogen from "swagger-autogen";
+import {hostname} from "os";
+import {resolve, dirname} from "path";
 import {fileURLToPath} from "url";
-import {dirname, resolve} from "path";
-export const gateway = new Router()
+
+const swaggerDefinition = {
+
+    info: {
+        title: "Node JS Backend API",
+        description: "This is the API documentation from Web backend service based on the NodeJS Framework of JS language.",
+    },
+    host: "nodejs-web-server.onrender.com",
+    schemes: ['https']
+};
 
 let directory = fileURLToPath(import.meta.url);
 console.log(directory)
 console.log("\n")
-const file = resolve(dirname(directory),'../swagger.json')
-let promise = import("../swagger.js");
-console.log("Before reading file: " + file)
-const swaggerJson =  await promise.then(async () => JSON.parse(await readFile(file)))
+const outputFile = resolve(dirname(directory),'swagger.json')
+const endpoints = ['./routes/*.js']
+console.log("file: " + outputFile)
+await swaggerAutogen(outputFile, endpoints, swaggerDefinition)
 
-gateway.use(main)
-gateway.use(contacts)
-gateway.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerJson))
-gateway.get('/health', (req, res) => {
-        res.send("Application is working fine")
-    }
-);
