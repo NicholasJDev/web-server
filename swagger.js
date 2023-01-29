@@ -14,26 +14,19 @@
  *  limitations under the License.
  */
 
-import e, {urlencoded} from "express";
-import {initializeDb} from "./mongoTemplate/MongoRepository.js";
-import {gateway} from "./routes/gateway.js";
-import bodyParser from "body-parser";
-import('./swagger.js')
+import swaggerAutogen from "swagger-autogen";
 
-const application = e()
-const port = process.env.PORT || 8080
+const swaggerDefinition = {
 
-application
-    .use(bodyParser.json())
-    .use(urlencoded({extended: true}))
-    .use(gateway)
+    info: {
+        title: "Node JS Backend API",
+        description: "This is the API documentation from Web backend service based on the NodeJS Framework of JS language.",
+    },
+    host: 'localhost:8080',
+    schemes: ['http']
+};
 
-initializeDb((err, mongodb) => {
-    if(err){
-        console.log(err)
-    }
-})
+const outputFile = './swagger.json'
+const endpoints = ['./routes/*.js']
+export const docs = swaggerAutogen(outputFile, endpoints, swaggerDefinition)
 
-application.listen(port, ()=> {
-    console.log(`Application listens on port ${port}`)
-})

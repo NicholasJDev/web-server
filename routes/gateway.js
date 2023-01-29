@@ -17,12 +17,15 @@
 import {Router} from "express";
 import {contacts} from "./contacts.js";
 import {main} from "./index.js";
+import swaggerUi from "swagger-ui-express";
+import swaggerDocument from "../swagger.json" assert {type: 'json'};
 
 export const gateway = new Router()
 
- gateway.use(main)
- gateway.use(contacts)
- gateway.get('/health', (req, res) => {
-    res.send("Application is working fine")
- }
+gateway.use(main)
+gateway.use(contacts)
+gateway.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+gateway.get('/health', (req, res) => {
+        res.send("Application is working fine")
+    }
 );

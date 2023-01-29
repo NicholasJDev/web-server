@@ -2,11 +2,12 @@
   "name": "w01-backend-server",
   "version": "1.0.0",
   "description": "",
-  "main": "controller/contacts.js",
+  "main": "./server.js",
   "type": "module",
   "scripts": {
     "start": "node server.js",
-    "test": "nodemon server.js"
+    "test": "nodemon server.js",
+    "swagger": "node ./swagger.js"
   },
   "repository": {
     "type": "git",
@@ -20,9 +21,13 @@
   },
   "homepage": "https://github.com/NicholasJDev/web-server#README",
   "dependencies": {
+    "cors": "^2.8.5",
     "body-parser": "1.20.1",
     "dotenv": "16.0.3",
     "express": "4.18.2",
-    "mongodb": "4.13.0"
+    "mongodb": "4.13.0",
+    "nodemon": "^2.0.20",
+    "swagger-ui-express": "^4.6.0",
+    "swagger-autogen": "^2.23.0"
   }
 }
